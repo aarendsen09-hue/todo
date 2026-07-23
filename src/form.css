@@ -1,0 +1,13 @@
+form {
+    border: 3px solid lightsalmon;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+form * {
+    padding: 5px;
+}
+
+button[type="submit"] {
+    margin-inline-start: 15px;
+}

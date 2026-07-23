@@ -1,3 +1,43 @@
+/* lavender blush, light coral, misty rose, light pink, light steel blue */
+
 body {
-    background-color: rebeccapurple;
+    background-color: lavenderblush;
+}
+
+.container {
+    display: flex;
+    gap: 50px;
+    margin: 20px;
+}
+
+.projects {
+    width: 20vw;
+    height: 95vh;
+    border: 5px solid lightcoral;
+    border-radius: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 20px;
+    border: 5px solid lightcoral;
+    border-radius: 10px;
+    width: 80vw;
+    height: 95vh;
+}
+
+button[type="submit"], .newProject {
+    width: 100px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: mistyrose;
+    border: 3px solid lightsalmon;
+}
+
+.content p {
+    align-self: center;
 }

@@ -3,9 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>My ToDos</title>
 </head>
 <body>
-    
+    <div class="container">
+        <div class="projects">
+            <h1>Projects</h1>
+            <ul>
+                <button class="newProject">New Project</button>
+                <div class="projectList">
+                    <h2 class="list">default</h2>
+                </div>
+            </ul>
+        </div>
+        <div class="content">
+            <h1 class="project_name"></h1>
+            <div class="new">
+                <form id="newToDo">
+                    <label for="title">Title: *</label>
+                    <input type="text" id="title" name="title" required>
+                    <label for="descr">Description: </label>
+                    <input type="text" id="descr" name="descr">
+                    <label for="dueDate">Due Date: </label>
+                    <input type="date" id="dueDate" name="dueDate">
+                    <label for="priority">Priority: * </label>
+                    <input type="number" id="priority" name="priority" min="1" max="3" step="1" required>
+                    <button type="submit">New To Do</button>
+                </form>
+            </div>
+            <div class="current">
+                <!-- <div class="task">
+                    <button class="checker"></button>
+                    <p>Laundry</p>
+                </div> -->
+            </div>
+        </div>
+    </div>
 </body>
 </html>
