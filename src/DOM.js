@@ -21,16 +21,42 @@ export function toDoListUpdate(toDos, onDelete) {
     toDos.forEach((td, index) => {
         const taskDiv = document.createElement("div");
         taskDiv.classList.add("task");
+        const titleCheckDiv = document.createElement("div");
         const checker = document.createElement("button");
         checker.classList.add("check");
         checker.classList.add(index);
         checker.addEventListener("click", () => {
             onDelete(index);
         });
-        taskDiv.appendChild(checker);
+        titleCheckDiv.appendChild(checker);
+        titleCheckDiv.classList.add("titleCheck");
         const task = document.createElement("p");
+        task.classList.add("taskTitle");
         task.textContent = td.title;
-        taskDiv.appendChild(task);
+        titleCheckDiv.appendChild(task);
+        taskDiv.appendChild(titleCheckDiv);
+        const description = document.createElement("p");
+        description.classList.add("descr")
+        if (td.descr != "") {
+            description.textContent = td.descr;
+        }
+        taskDiv.appendChild(description);
+        const priority = document.createElement("div");
+        priority.classList.add("priority");
+        switch (td.priority) {
+            case "1":
+                priority.classList.add("urgent");
+                priority.textContent = "!!!"
+                break;
+            case "2":
+                priority.classList.add("moderate");
+                priority.textContent = "!!"
+                break;
+            default:
+                priority.classList.add("normal");
+                break;
+        }
+        taskDiv.appendChild(priority)
         allToDos.appendChild(taskDiv);
     });
 }

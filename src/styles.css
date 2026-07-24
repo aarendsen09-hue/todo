@@ -56,6 +56,41 @@ button[type="submit"], .newProject {
     margin: 15px;
     box-sizing: border-box;
     align-items: center;
-    /* border: 3px solid lightsalmon;
-    border-radius: 15px; */
+}
+
+.descr {
+    width: 150px;
+    margin-left: 85px;
+    border: 2px solid black;
+}
+
+.taskTitle {
+    width: 150px;
+    border: 2px solid black;
+    
+}
+
+.priority {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.urgent {
+    background-color: crimson;
+}
+
+.moderate {
+    background-color: goldenrod;
+}
+
+.titleCheck {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
 }
