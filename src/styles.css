@@ -41,3 +41,21 @@ button[type="submit"], .newProject {
 .content p {
     align-self: center;
 }
+
+.check {
+    border-radius: 500px;
+    background-color: lightsteelblue;
+    height: 30px;
+    width: 30px;
+
+}
+
+.task {
+    display: flex;
+    gap: 15px;
+    margin: 15px;
+    box-sizing: border-box;
+    align-items: center;
+    /* border: 3px solid lightsalmon;
+    border-radius: 15px; */
+}

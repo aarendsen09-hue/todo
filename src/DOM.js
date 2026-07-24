@@ -14,3 +14,24 @@ export function projectListUpdate(projectList) {
     }
 }
 
+export function toDoListUpdate(toDos, onDelete) {
+    const allToDos = document.querySelector(".current");
+    allToDos.replaceChildren();
+
+    toDos.forEach((td, index) => {
+        const taskDiv = document.createElement("div");
+        taskDiv.classList.add("task");
+        const checker = document.createElement("button");
+        checker.classList.add("check");
+        checker.classList.add(index);
+        checker.addEventListener("click", () => {
+            onDelete(index);
+        });
+        taskDiv.appendChild(checker);
+        const task = document.createElement("p");
+        task.textContent = td.title;
+        taskDiv.appendChild(task);
+        allToDos.appendChild(taskDiv);
+    });
+}
+

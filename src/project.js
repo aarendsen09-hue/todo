@@ -7,4 +7,12 @@ export default class Project {
     addToDo(toDo) {
         this.toDos.push(toDo);
     }
+
+    getToDos() {
+        return this.toDos;
+    }
+
+    removeToDo(index) {
+        this.toDos.splice(index, 1);
+    }
 }

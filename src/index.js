@@ -4,9 +4,10 @@ import "./form.css";
 import project from "./project.js"; 
 import { createDOM } from "./DOM.js"
 import { projectListUpdate } from "./DOM.js";
+import { toDoListUpdate } from "./DOM.js";
 
 const projects = [];
-const defaultList = new project("default");
+const defaultList = new project("Default List");
 projects.push(defaultList);
 let currentProject = defaultList;
 createDOM(currentProject);
@@ -29,13 +30,20 @@ form.addEventListener("submit", (event) => {
     const priority = formData.get("priority")
 
     const task = new toDo(title, descr, priority);
-    console.log(task);
+    currentProject.addToDo(task);
+    toDoListUpdate(currentProject.getToDos(), onDelete);
 })
 
-const projectCreater = document.querySelector(".newProject") 
+const projectCreater = document.querySelector(".newProject");
 projectCreater.addEventListener("click", (event) => {
     const title = prompt("What is the name of your list?");
     const list = new project(title);
     projects.push(list);
     projectListUpdate(projects);
 })
+
+function onDelete(index) {
+    currentProject.removeToDo(index);
+    toDoListUpdate(currentProject.getToDos(), onDelete);
+}
+
