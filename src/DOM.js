@@ -1,3 +1,5 @@
+import { isPast, format, startOfDay } from "date-fns";
+
 export function createDOM(currentProject) {
     const projectOpen = document.querySelector(".project_name");
     projectOpen.textContent = currentProject.name;
@@ -41,6 +43,14 @@ export function toDoListUpdate(toDos, onDelete) {
             description.textContent = td.descr;
         }
         taskDiv.appendChild(description);
+        const dueDate = document.createElement("p");
+        dueDate.classList.add("due");
+        dueDate.textContent = format(td.dueDate, "MMMM d, yyyy");
+        if (isPast(startOfDay(td.dueDate))) {
+            dueDate.classList.add("overdue");
+        }
+        taskDiv.appendChild(dueDate);
+
         const priority = document.createElement("div");
         priority.classList.add("priority");
         switch (td.priority) {

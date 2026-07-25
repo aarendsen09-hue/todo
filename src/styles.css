@@ -60,14 +60,11 @@ button[type="submit"], .newProject {
 
 .descr {
     width: 150px;
-    margin-left: 85px;
-    border: 2px solid black;
+    margin-left: 90px;
 }
 
 .taskTitle {
     width: 150px;
-    border: 2px solid black;
-    
 }
 
 .priority {
@@ -78,6 +75,7 @@ button[type="submit"], .newProject {
     align-items: center;
     justify-content: center;
     color: white;
+    margin-left: 75px;
 }
 
 .urgent {
@@ -93,4 +91,14 @@ button[type="submit"], .newProject {
     justify-content: center;
     align-items: center;
     gap: 40px;
+}
+
+.overdue {
+    color: red;
+    font-weight: bold;
+}
+
+.due {
+    width: 130px;
+    margin-left: 75px;
 }
