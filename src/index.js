@@ -1,17 +1,48 @@
 import "./styles.css";
 import toDo from "./toDo.js";
 import "./form.css";
-import project from "./project.js"; 
+import Project from "./project.js"; 
 import { createDOM } from "./DOM.js"
 import { projectListUpdate } from "./DOM.js";
 import { toDoListUpdate } from "./DOM.js";
 import { format } from "date-fns";
+import { saveProjectInfo, loadProjects } from "./storage.js";
 
-const projects = [];
-const defaultList = new project("Default List");
-projects.push(defaultList);
-let currentProject = defaultList;
+let projects;
+let defaultList;
+if (loadProjects() == null) {
+    setUpProjects();
+} else {
+    organizeExistingProjects(loadProjects());
+    projectListUpdate(projects, updateCurrentProject);
+} 
+
+let currentProject = projects[0];
 createDOM(currentProject);
+
+function organizeExistingProjects(rawProjects) {
+    projects = rawProjects.map(raw => {
+        const project = new Project(raw.name);
+
+        raw.toDos.forEach(rawToDo => {
+            project.addToDo(
+                new toDo(
+                    rawToDo.title,
+                    rawToDo.descr,
+                    rawToDo.dueDate,
+                    rawToDo.priority
+                )
+            );
+        });
+        return project;
+    });
+} 
+
+function setUpProjects() {
+    projects = [];
+    defaultList = new Project("Default List");
+    projects.push(defaultList);
+}
 
 function updateCurrentProject(project) {
     currentProject = project;
@@ -38,17 +69,21 @@ form.addEventListener("submit", (event) => {
     const task = new toDo(title, descr, dueDate, priority);
     currentProject.addToDo(task);
     toDoListUpdate(currentProject.getToDos(), onDelete);
+    saveProjectInfo(projects);
 })
 
 const projectCreater = document.querySelector(".newProject");
 projectCreater.addEventListener("click", (event) => {
     const title = prompt("What is the name of your list?");
-    const list = new project(title);
+    const list = new Project(title);
     projects.push(list);
     projectListUpdate(projects, updateCurrentProject);
+    saveProjectInfo(projects);
 })
 
 function onDelete(index) {
     currentProject.removeToDo(index);
     toDoListUpdate(currentProject.getToDos(), onDelete);
+    saveProjectInfo(projects);
 }
+
