@@ -13,13 +13,11 @@ projects.push(defaultList);
 let currentProject = defaultList;
 createDOM(currentProject);
 
-const projectList = document.querySelectorAll(".list");
-projectList.forEach(list => { 
-    list.addEventListener("click", () => {
-        currentProject = list;
-        createDOM(currentProject);
-    })
-});
+function updateCurrentProject(project) {
+    currentProject = project;
+    createDOM(currentProject);
+    toDoListUpdate(currentProject.getToDos(), onDelete);
+}
 
 const form = document.querySelector("form");
 form.addEventListener("submit", (event) => {
@@ -47,11 +45,10 @@ projectCreater.addEventListener("click", (event) => {
     const title = prompt("What is the name of your list?");
     const list = new project(title);
     projects.push(list);
-    projectListUpdate(projects);
+    projectListUpdate(projects, updateCurrentProject);
 })
 
 function onDelete(index) {
     currentProject.removeToDo(index);
     toDoListUpdate(currentProject.getToDos(), onDelete);
 }
-
